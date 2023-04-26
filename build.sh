@@ -13,7 +13,7 @@ export RES='\E[0m'
 GIT=https://github.com
 REMOTE=AllwinnerSuniv
 UPSTREAM=${GIT}/${REMOTE}
-RELEASE=kirkstone
+RELEASE=thud
 
 START_BUILD_TIME=`date +%H:%M:%S`
 LOGFILE=yocto_build_${START_BUILD_TIME}.log
@@ -42,7 +42,7 @@ export -f echo_success
 function do_fetch() {
 	echo $1
     if [ ! -d "$1/" ]; then
-        echo_debug "can't find $1, pulling ..."
+        echo_debug "can't find $1, pulling from [${UPSTREAM}/${1}]:${RELEASE} ..."
         git clone -q --depth 1 -b $RELEASE ${UPSTREAM}/$1
     else
         echo_debug "$1/ was detected, make sure it's okay."
